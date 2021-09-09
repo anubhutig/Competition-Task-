@@ -134,8 +134,11 @@ namespace MarsFramework.Pages
             ShareSkillButton.WaitForElementClickable(GlobalDefinitions.driver, 60);
             ShareSkillButton.Click();
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ShareSkill");
+            GlobalDefinitions.wait(10);
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
+            GlobalDefinitions.wait(10);
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
+            GlobalDefinitions.wait(10);
             CategoryDropDown.Click();
             SelectElement selectCategory = new SelectElement(CategoryDropDown);
             selectCategory.SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
@@ -223,12 +226,15 @@ namespace MarsFramework.Pages
             }
 
             WorkSample.Click();
-            GlobalDefinitions.wait(30);
+            GlobalDefinitions.wait(60);
             //Thread.Sleep(2000);
             using (Process exeProcess = Process.Start(@"D:\Competition Task\marsframework-master\FileUploadWorkSample.exe"))
             {
+                GlobalDefinitions.wait(60);
                 exeProcess.WaitForExit();
+               // GlobalDefinitions.wait(60);
             }
+            GlobalDefinitions.wait(30);
 
            // Thread.Sleep(2000);
             //Select Active Status Button
